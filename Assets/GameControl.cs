@@ -208,19 +208,42 @@ public class GameControl : MonoBehaviour
 
 	IEnumerator wait()
 	{
-		for (int i = 0; i < 5; i++)
+		int prevRand = -1;
+
+		for (int i = 0; i < 5;)
 		{
 			int rand = Random.Range(0, 3);
-			setButtonColor(numberButtons[rand], Color.red);
+			if (rand == prevRand)
+			{
+				prevRand = rand;
+				continue;
+			}
 			yield return new WaitForSeconds((i^2) * 0.1f);
-			setButtonColor(numberButtons[rand], disabledColor);	
+			markNumberButton(numberButtons[rand], Color.grey, disabledColor);
+			prevRand = rand;
+			i++;
 		}
 
 		yield return new WaitForSeconds((5^2) * 0.1f);
 
-		setButtonColor(numberButtons[game.ThatNumber - 1], game.Number == game.ThatNumber ? Color.red : Color.green);
+		markNumberButton(numberButtons[game.ThatNumber - 1], game.Number == game.ThatNumber ? Color.red : Color.green, disabledColor);
 
 		controlState();
+	}
+
+	void markNumberButton(Button markButton, Color markColor, Color unmarkColor)
+	{
+		foreach (var button in numberButtons)
+		{
+			if (button == markButton)
+			{
+				setButtonColor (button, markColor);
+			} 
+			else
+			{
+				setButtonColor (button, unmarkColor);
+			}
+		}
 	}
 
 	static void setButtonColor(Button button, Color color)
