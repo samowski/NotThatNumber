@@ -53,7 +53,6 @@ public class GameControl : MonoBehaviour
 		noButton = GameObject.Find("NoButton").GetComponent<Button>();
 		yesButton.interactable = false;
 		noButton.interactable = false;
-
 		continueButtonAnimator = GameObject.Find("ContinueButtons").GetComponent<Animator>();
 
 		nameInput = GameObject.Find("NameInput").GetComponent<InputField>();
@@ -93,6 +92,7 @@ public class GameControl : MonoBehaviour
 
 			yesButton.interactable = false;
 			noButton.interactable = false;
+			
 
 			continueButtonAnimator.SetBool("visible", false);
 
@@ -161,6 +161,8 @@ public class GameControl : MonoBehaviour
 				{
 					nameInput.interactable = true;
 					nameInput.text = "";
+					nameInput.Select();
+					nameInput.ActivateInputField();
 				}
 
 				if (state == Game.State.HaveRoundEnd)
@@ -231,6 +233,40 @@ public class GameControl : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-	
+		if (Input.GetButtonUp("NewGame"))
+		{
+			newRound();	
+		}
+
+		if (Input.GetButtonUp("Number1"))
+		{
+			selectNumber(1);	
+		}
+
+		if (Input.GetButtonUp("Number2"))
+		{
+			selectNumber(2);	
+		}
+
+		if (Input.GetButtonUp("Number3"))
+		{
+			selectNumber(3);	
+		}
+
+		if (Input.GetButtonUp("Number4"))
+		{
+			selectNumber(4);	
+		}
+
+		if (Input.GetButtonUp("ContinueYes"))
+		{
+			selectContinue(true);	
+		}
+
+		if (Input.GetButtonUp("ContinueNo"))
+		{
+			selectContinue(false);	
+		}
+
 	}
 }
