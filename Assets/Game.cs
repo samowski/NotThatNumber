@@ -10,7 +10,8 @@ namespace NotThatNumber
       NeedName,
       NeedNumber,
       NeedContinueRound,
-      HaveRoundEnd,
+      HaveRoundStart,
+	  HaveRoundEnd,
       HaveHighScore,
       HaveThatNumber,
     }
@@ -47,7 +48,7 @@ namespace NotThatNumber
     {
       while (true)
       {
-        yield return State.HaveHighScore;
+        yield return State.HaveRoundStart;
 
         Points = 0u;
 
@@ -60,6 +61,7 @@ namespace NotThatNumber
         {
           yield return State.NeedName;
           Highscore.Set(Points, Name);
+		  yield return State.HaveHighScore;
         }
 
         yield return State.HaveRoundEnd;
