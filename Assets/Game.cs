@@ -11,30 +11,33 @@ namespace NotThatNumber
       NeedNumber,
       NeedContinueRound,
       HaveRoundStart,
-	  HaveRoundEnd,
+      HaveRoundEnd,
       HaveHighScore,
       HaveThatNumber,
     }
       
-    // output
+    // output:
+
     public HighScore Highscore { get; private set; }
 
     public uint ThatNumber { get; private set; }
 
-    public uint Points { get; private set; }
+    public uint Score { get; private set; }
 
-    // input
+    // input:
+
     public bool ContinueRound = true;
     public string Name = "";
-    public uint Number = 0u;
+    public uint Number;
 
-    IEnumerator<State> gameIterator = null;
+    IEnumerator<State> gameIterator;
     bool isThatNumber = false;
-    Random rng = new Random();
+    Random random = new Random();
 
     public Game(HighScore HighScore)
     {
       gameIterator = playGame();
+
       this.Highscore = HighScore;
     }
 
@@ -50,18 +53,20 @@ namespace NotThatNumber
       {
         yield return State.HaveRoundStart;
 
-        Points = 0u;
+        Score = 0u;
 
         foreach (State state in playRound())
         {
           yield return state;
         }
 
-        if (Points >= Highscore.Score && !isThatNumber)
+        if (Score >= Highscore.Score && !isThatNumber)
         {
           yield return State.NeedName;
-          Highscore.Set(Points, Name);
-		  yield return State.HaveHighScore;
+
+          Highscore.Set(Score, Name);
+
+          yield return State.HaveHighScore;
         }
 
         yield return State.HaveRoundEnd;
@@ -74,7 +79,8 @@ namespace NotThatNumber
       {
         yield return State.NeedNumber;
 
-        ThatNumber = (uint)rng.Next(1, 5);
+        ThatNumber = (uint)random.Next(1, 5);
+
         yield return State.HaveThatNumber;
 
         isThatNumber = Number == ThatNumber;
@@ -85,7 +91,7 @@ namespace NotThatNumber
         }
         else
         {
-          Points++;
+          Score++;
         }
 
         yield return State.NeedContinueRound;
