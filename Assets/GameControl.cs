@@ -22,7 +22,8 @@ public class GameControl : MonoBehaviour
 
   Button yesButton;
   Button noButton;
-  Animator continueButtonAnimator;
+
+  Animator continueAnimator;
 
   InputField nameInput;
 
@@ -54,7 +55,7 @@ public class GameControl : MonoBehaviour
     noButton = GameObject.Find("NoButton").GetComponent<Button>();
     noButton.interactable = false;
 
-    continueButtonAnimator = GameObject.Find("ContinueButtons").GetComponent<Animator>();
+    continueAnimator = GameObject.Find("Continue").GetComponent<Animator>();
 
     nameInput = GameObject.Find("NameInput").GetComponent<InputField>();
     nameInput.interactable = false;
@@ -91,7 +92,7 @@ public class GameControl : MonoBehaviour
       yesButton.interactable = false;
       noButton.interactable = false;
 			
-      continueButtonAnimator.SetBool("visible", false);
+      continueAnimator.SetBool("visible", false);
 
       controlState();
     }
@@ -136,7 +137,7 @@ public class GameControl : MonoBehaviour
     yesButton.interactable = true;
     noButton.interactable = true;
 
-    continueButtonAnimator.SetBool("visible", true);
+    continueAnimator.SetBool("visible", true);
   }
 
   void handleNeedName()
@@ -157,9 +158,9 @@ public class GameControl : MonoBehaviour
   bool isBlockingState(Game.State state)
   {
     return state == Game.State.NeedNumber ||
-           state == Game.State.NeedName ||
-           state == Game.State.NeedContinueRound ||
-           state == Game.State.HaveRoundEnd;
+    state == Game.State.NeedName ||
+    state == Game.State.NeedContinueRound ||
+    state == Game.State.HaveRoundEnd;
   }
 
   void controlState()
@@ -176,28 +177,34 @@ public class GameControl : MonoBehaviour
         if (state == Game.State.NeedNumber)
         {
           handleNeedNumber();
-        } else if (state == Game.State.NeedContinueRound)
+        }
+        else if (state == Game.State.NeedContinueRound)
         {
           handleNeedContinueRound();
-        } else if (state == Game.State.NeedName)
+        }
+        else if (state == Game.State.NeedName)
         {
           handleNeedName();
-        } else if (state == Game.State.HaveRoundEnd)
+        }
+        else if (state == Game.State.HaveRoundEnd)
         {
           handleHaveRoundEnd();
         }
         return;
-      } else
+      }
+      else
       {
         if (state == Game.State.HaveHighScore)
         {
           setHighscoreLabel();
-        } else if (state == Game.State.HaveThatNumber)
+        }
+        else if (state == Game.State.HaveThatNumber)
         {
           if (isAnimating)
           {
             isAnimating = false;
-          } else
+          }
+          else
           {
             isAnimating = true;
 
@@ -261,7 +268,8 @@ public class GameControl : MonoBehaviour
       if (button == markButton)
       {
         setButtonColor(button, markColor);
-      } else
+      }
+      else
       {
         setButtonColor(button, unmarkColor);
       }
@@ -285,13 +293,16 @@ public class GameControl : MonoBehaviour
     if (Input.GetButtonUp("Number1"))
     {
       selectNumber(1);	
-    } else if (Input.GetButtonUp("Number2"))
+    }
+    else if (Input.GetButtonUp("Number2"))
     {
       selectNumber(2);	
-    } else if (Input.GetButtonUp("Number3"))
+    }
+    else if (Input.GetButtonUp("Number3"))
     {
       selectNumber(3);	
-    } else if (Input.GetButtonUp("Number4"))
+    }
+    else if (Input.GetButtonUp("Number4"))
     {
       selectNumber(4);	
     }
@@ -299,7 +310,8 @@ public class GameControl : MonoBehaviour
     if (Input.GetButtonUp("ContinueYes"))
     {
       selectContinue(true);	
-    } else if (Input.GetButtonUp("ContinueNo"))
+    }
+    else if (Input.GetButtonUp("ContinueNo"))
     {
       selectContinue(false);	
     }

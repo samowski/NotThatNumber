@@ -38,12 +38,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -30
+        value: -60
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: -30
+        value: -60
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -115,12 +115,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -30
+        value: -60
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: -30
+        value: -60
         inSlope: 0
         outSlope: 0
         tangentMode: 10
