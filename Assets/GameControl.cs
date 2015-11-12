@@ -30,7 +30,7 @@ public class GameControl : MonoBehaviour
 
 	void Start()
 	{
-		state = Game.State.HaveRoundEnd;//game.Advance();
+		state = Game.State.HaveRoundEnd;
 
 		newRoundButton = GameObject.Find("NewRoundButton").GetComponent<Button>();
 
@@ -70,8 +70,6 @@ public class GameControl : MonoBehaviour
 
 	public void selectNumber(int number)
 	{
-		Debug.Log(number.ToString() + " " + state);
-		//Debug.Log(state);
 		if (state == Game.State.NeedNumber)
 		{
 			game.Number = (uint)number;
@@ -85,7 +83,6 @@ public class GameControl : MonoBehaviour
 
 	public void selectContinue(bool selection)
 	{
-		Debug.Log(selection);
 		if (state == Game.State.NeedContinueRound)
 		{
 			game.ContinueRound = selection;
@@ -102,7 +99,6 @@ public class GameControl : MonoBehaviour
 
 	public void selectName()
 	{
-		Debug.Log(nameInput.text);
 		if (state == Game.State.NeedName)
 		{
 			game.Name = nameInput.text;
@@ -133,8 +129,6 @@ public class GameControl : MonoBehaviour
 
 		while (true)
 		{
-			Debug.Log(state.ToString());
-
 			if (state == Game.State.NeedNumber || state == Game.State.NeedName || state == Game.State.NeedContinueRound || state == Game.State.HaveRoundEnd)
 			{
 				if (state == Game.State.NeedNumber)
@@ -178,7 +172,7 @@ public class GameControl : MonoBehaviour
 			{
 				if (state == Game.State.HaveHighScore)
 				{
-					setHighscoreLabel(); // design flaw with highscore update
+					setHighscoreLabel();
 				}
 				else if (state == Game.State.HaveThatNumber)
 				{
@@ -252,8 +246,7 @@ public class GameControl : MonoBehaviour
 		colors.disabledColor = color;
 		button.colors = colors;
 	}
-
-	// Update is called once per frame
+		
 	void Update()
 	{
 		if (Input.GetButtonUp("NewGame"))
@@ -290,6 +283,5 @@ public class GameControl : MonoBehaviour
 		{
 			selectContinue(false);	
 		}
-
 	}
 }
