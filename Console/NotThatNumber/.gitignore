@@ -1,0 +1,23 @@
+# based on "http://stackoverflow.com/questions/18225126/how-to-use-git-for-unity-source-control" best answer
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+obj/
+bin/
+*.svd
+*.userprefs
+*.pidb
+/*.sln
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
