@@ -100,7 +100,7 @@ public class GameControl : MonoBehaviour
 
   public void selectName()
   {
-    if (state == Game.State.NeedName)
+    if (state == Game.State.NeedName && nameInput.text != "")
     {
       game.Name = nameInput.text;
 
