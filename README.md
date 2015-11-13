@@ -1,2 +1,2 @@
 # NotThatNumber
-Simple game to test Unity
+Simple game in a console and Unity version
